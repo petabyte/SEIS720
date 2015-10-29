@@ -1,0 +1,14 @@
+{
+  "name": "SEIS720",
+  "version": "1.0.0",
+  "description": "SEIS720 Project OAuth Signature Validation",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "George <petabyte.gs@gmail.com> (http://petabyte-georgesanchez.blogspot.com/)",
+  "license": "MIT"
+}
