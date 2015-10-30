@@ -52,7 +52,18 @@ function OAuth(opts) {
             break;
 
         case 'RSA-SHA1':
-            throw new Error('oauth-1.0a does not support this signature method right now. Coming Soon...');
+            //Added Implementation George Sanchez
+            //throw new Error('oauth-1.0a does not support this signature method right now. Coming Soon...');
+            this.hash = function (base_string, key){
+                 var rsa = new RSAKey();
+                 //Don't really need the secret key
+                 //We use the private key
+                 rsa.readPrivateKeyFromPEMString(RSAPrivateKeyPEM);
+                 var hSig = rsa.signString(base_string, 'sha1');
+                 return stob64(hSig);
+
+            };
+            break;
         default:
             throw new Error('The OAuth 1.0a protocol defines three signature methods: HMAC-SHA1, RSA-SHA1, and PLAINTEXT only');
     }

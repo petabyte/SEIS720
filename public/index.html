@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="./jsrsasign-latest-all-min.js"></script>
 <!-- sha1 -->
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
 <!-- sha256 -->
@@ -8,16 +9,20 @@
 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="./oauth-1.0a.js"></script>
+<script src="./RSAKeysClientSide.js"></script>
 <script src="./clientside.js"></script>
+
 
 </head>
 <body>
-<h1>Sample OAuth Request - OAuth 1.0a Supports HMAC-SHA1, HMAC-SHA256 and PLAINTEXT</h1>
+<h1>Sample OAuth Request - OAuth 1.0a Supports HMAC-SHA1, HMAC-SHA256, PLAINTEXT AND RSA-SHA1</h1>
 <p>HMAC-SHA1</p>
 <div id="oauth_response1"></div>
 <p>HMAC-SHA256</p>
 <div id="oauth_response2"></div>
 <p>PLAINTEXT</p>
 <div id="oauth_response3"></div>
+<p>RSA-SHA1</p>
+<div id="oauth_response4"></div>
 </body>
 </html>

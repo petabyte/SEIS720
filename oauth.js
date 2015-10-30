@@ -3,6 +3,8 @@ const ReplayExpiry = 86400;
 var crypto = require('crypto'),
     qs = require('querystring'),
     url = require('url');
+    jsrsasign = require('jsrsasign');
+    rsakeys = require('./RSAKeysServerSide.js');
 
 
 exports.OAuthError = function (message) {
@@ -177,12 +179,20 @@ exports.verifySignature = function (lookup, redisClient) {
 					return next(new exports.OAuthError("failed OAuth HMAC-SHA1 verification"));
 		
 			} else if (req.oauthParams['oauth_signature_method'] == 'HMAC-SHA256') {
+				//Added this implementation as well George Sanchez
 				var hmac = crypto.createHmac('sha256', key);
 				hmac.update(baseString);
 
 				if (req.oauthParams['oauth_signature'] != hmac.digest('base64'))
 					return next(new exports.OAuthError("failed OAuth HMAC-SHA256 verification"));
 	
+			} else if (req.oauthParams['oauth_signature_method'] == 'RSA-SHA1') {
+				//Added this implementation  George Sanchez
+			     var x509 = new jsrsasign.X509();
+			     x509.readCertPEM(rsakeys.RSAPublicKeyCert());
+			     var isValid = x509.subjectPublicKeyRSA.verifyString(baseString, jsrsasign.b64utos(req.oauthParams['oauth_signature']));
+				if (!isValid)
+					return next(new exports.OAuthError("failed OAuth RSA-SHA1 verification"));				
 			} else {
 				return next(new exports.OAuthError("unsupported or missing OAuth signature method"));
 			}
