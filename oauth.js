@@ -168,10 +168,12 @@ exports.verifySignature = function (lookup, redisClient) {
 	
 			// Verify the signature
 			if (req.oauthParams['oauth_signature_method'] == 'PLAINTEXT') {
+				console.log('Checking PLAINTEXT Signature');
 				if (req.oauthParams['oauth_signature'] != key)
 					return next(new exports.OAuthError("failed OAuth PLAINTEXT verification"));
 
 			} else if (req.oauthParams['oauth_signature_method'] == 'HMAC-SHA1') {
+				console.log('Checking HMAC-SHA1 Signature');
 				var hmac = crypto.createHmac('sha1', key);
 				hmac.update(baseString);
 
@@ -180,6 +182,7 @@ exports.verifySignature = function (lookup, redisClient) {
 		
 			} else if (req.oauthParams['oauth_signature_method'] == 'HMAC-SHA256') {
 				//Added this implementation as well George Sanchez
+				console.log('Checking HMAC-SHA256 Signature');
 				var hmac = crypto.createHmac('sha256', key);
 				hmac.update(baseString);
 
@@ -188,6 +191,7 @@ exports.verifySignature = function (lookup, redisClient) {
 	
 			} else if (req.oauthParams['oauth_signature_method'] == 'RSA-SHA1') {
 				//Added this implementation  George Sanchez
+				console.log('Checking RSA-SHA1 Signature');
 			     var x509 = new jsrsasign.X509();
 			     x509.readCertPEM(rsakeys.RSAPublicKeyCert());
 			     var isValid = x509.subjectPublicKeyRSA.verifyString(baseString, jsrsasign.b64utos(req.oauthParams['oauth_signature']));
