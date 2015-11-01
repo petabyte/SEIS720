@@ -4,7 +4,8 @@
   "description": "SEIS720 Project OAuth Signature Validation",
   "dependencies": {
     "express": "^4.13.3",
-    "jsrsasign": "^5.0.1"
+    "jsrsasign": "^5.0.1",
+    "response-time": "^2.3.1"
   },
   "devDependencies": {},
   "scripts": {

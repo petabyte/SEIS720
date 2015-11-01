@@ -1,7 +1,9 @@
 var express = require('express');
 var oauth = require('./oauth.js')
 var path    = require("path");
+var responseTime = require('response-time');
 var app = express();
+app.use(responseTime());
 app.use(express.static('public'));
 app.use(oauth.parseHeader());
 
