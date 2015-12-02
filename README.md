@@ -2,7 +2,7 @@
 SEIS 720 Project
 
 Prerequisite:
-Install Node
+Install Node https://nodejs.org/en/download/package-manager/
 
 Running this project:
 Download all files to a single directory 
